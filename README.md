@@ -14,6 +14,7 @@ django  system manager
 ![](https://github.com/feigu1984/python-crm/blob/master/Pictures/apply_list_manager.PNG)
 ![](https://github.com/feigu1984/python-crm/blob/master/Pictures/apply_to_user.PNG)
 ![](https://github.com/feigu1984/python-crm/blob/master/Pictures/busy_list.PNG)
+> ansible 软件部署
 ![](https://github.com/feigu1984/python-crm/blob/master/Pictures/ansible_ret.PNG)
 ![](https://github.com/feigu1984/python-crm/blob/master/Pictures/openstack_flavor_list.PNG)
 ![](https://github.com/feigu1984/python-crm/blob/master/Pictures/openstack_create_instances.PNG)

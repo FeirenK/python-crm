@@ -1,7 +1,7 @@
 ### 主要特性
 django  system manager
 
-feiren  test
+python webhook.....
 
 
 - 结合cobbler api 部署系统一键式安装

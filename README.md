@@ -1,6 +1,9 @@
 ### 主要特性
 django  system manager
 
+feiren  test
+
+
 - 结合cobbler api 部署系统一键式安装
 - 资产管理-申请服务器-报备
 - 软件部署 整合 salt/ansible palybook 自动化安装,配置管理

@@ -7,5 +7,5 @@ jobs:
     steps:
       - checkout
       - run: pwd && cat /etc/issue  && uname -a 
-      - run: sudo agt install golang
+      - run: sudo apt install golang
       

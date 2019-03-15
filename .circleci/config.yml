@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: circleci/classic:2017-01   # VM will run Ubuntu 14.04 for this release date
+    working_directory: ~/  
+    steps:
+      - checkout
+      - run: pwd && cat /etc/issue  && uname -a 
+      - run: sudo agt install golang
+      

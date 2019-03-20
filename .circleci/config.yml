@@ -5,15 +5,14 @@ jobs:
       image: circleci/classic:latest
     working_directory: ~/python-crm  
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "c7:37:33:46:42:1a:a8:73:4e:11:27:1e:9c:8b:02:35"
-            - "e5:c0:63:7a:51:51:a6:f6:4c:cd:6a:47:b1:a7:cc:6e"
+
       - checkout
       - run: mkdir dist
       - run: pwd && cat /etc/issue  && uname -a > dist/test.html
       - run: 
          command: |
+           git config --global user.name feigu1984
+           git config --global user.email feigu_1984@qq.com
            git add -A && git commit -m "deploy" 
            git subtree push --prefix=dist origin gh-pages
       

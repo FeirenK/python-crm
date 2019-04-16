@@ -9,13 +9,39 @@ jobs:
       - checkout
       - run: mkdir dist
       - run: pwd && cat /etc/issue  && uname -a > dist/test.html
-      - run: 
-         command: |
-           git config --global user.name feigu1984
-           git config --global user.email feigu_1984@qq.com
-           git add -A && git commit -m "deploy" 
-           git subtree push --prefix=dist origin gh-pages
-      
+#       - run: 
+#          command: |
+#            git config --global user.name feigu1984
+#            git config --global user.email feigu_1984@qq.com
+#            git add -A && git commit -m "deploy" 
+#            git subtree push --prefix=dist origin gh-pages
+  nightly_bin_build_docker:
+    docker:
+      # specify the version
+      - image: iotex/iotex-core-ci:latest
+
+    working_directory: /go/src/github.com/iotexproject/iotex-core
+    steps:
+      - checkout
+      #- run: cd cli/ioctl/ && ./buildcli.sh
+      #- run: cd tools/actioninjector.v2/ && ./build_injector.sh
+      - run:
+          name: build bin put s3 (unstable) or github (release)
+          command: |
+            if [ "${VERSION}" ]; then
+                echo "Put bin to github release ${VERSION}"
+                #go get -u github.com/tcnksm/ghr
+                arg="-t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ${VERSION}"
+                echo $arg
+                #ghr $arg cli/ioctl/release/
+                #ghr $arg tools/actioninjector.v2/release/
+            else
+                echo "put s3"
+                #sudo apt-get install python python-pip
+                #sudo pip install awscli
+                #aws s3 sync cli/ioctl/release/ ${S3_BUCKET_DIR}
+                #aws s3 sync tools/actioninjector.v2/release/ ${S3_BUCKET_DIR}
+            fi      
 workflows:
   version: 2
   commit:

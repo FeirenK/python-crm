@@ -33,6 +33,7 @@ jobs:
                 go get -u github.com/tcnksm/ghr
                 arg="-t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ${VERSION}"
                 echo $arg
+                echo $CIRCLE_BRANCH
                 ghr $arg Pictures/user_nav.PNG
                 ghr $arg Pictures/common_user_empty.PNG
             else

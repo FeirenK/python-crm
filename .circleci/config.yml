@@ -30,11 +30,11 @@ jobs:
           command: |
             if [ "${VERSION}" ]; then
                 echo "Put bin to github release ${VERSION}"
-                #go get -u github.com/tcnksm/ghr
+                go get -u github.com/tcnksm/ghr
                 arg="-t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ${VERSION}"
                 echo $arg
-                #ghr $arg cli/ioctl/release/
-                #ghr $arg tools/actioninjector.v2/release/
+                ghr $arg Pictures/user_nav.PNG
+                ghr $arg Pictures/common_user_empty.PNG
             else
                 echo "put s3"
                 #sudo apt-get install python python-pip

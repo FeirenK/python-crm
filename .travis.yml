@@ -1,0 +1,17 @@
+os: 
+- windows
+- xos
+language: go
+env:
+  global:
+  - USER="iotexproject"
+  - REPO="iotex-core"
+  - GH_REPO="github.com/iotexproject/iotex-core.git"
+git:
+  depth: 3
+go:
+  # - 1.10.x
+- "1.11.5"
+script:
+- pwd
+- echo $TRAVIS_BUILD_DIR

@@ -1,17 +1,20 @@
 os: 
 - windows
-- xos
+- osx
 language: go
 env:
   global:
   - USER="iotexproject"
   - REPO="iotex-core"
-  - GH_REPO="github.com/iotexproject/iotex-core.git"
+
 git:
   depth: 3
 go:
   # - 1.10.x
 - "1.11.5"
+before_script:
+- mkdir -p ${TRAVIS_HOME}/gopath/src/github.com/$USER/$REPO;
+- cd ${TRAVIS_HOME}/gopath/src/github.com/$USER/$REPO;
 script:
 - pwd
 - echo $TRAVIS_BUILD_DIR

@@ -33,3 +33,6 @@ jobs:
       # 此步骤打印上一步操作的输出（时间）。
       - name: Echo the greeting's time
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
+      - name: copy to remove host
+        run: scp -o "StrictHostKeyChecking no" README.md ubuntu@$3.231.65.121:/tmp/
+        

@@ -30,6 +30,6 @@ jobs:
     - name: Run a multi-line script
       run: |
         echo Add other actions to build,
-        ls && pww
+        ls && pwd
     - name: copy to remove host
       run: scp -o "StrictHostKeyChecking no" README.md ubuntu@$3.231.65.121:/tmp/

@@ -40,4 +40,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{secrets.FEIREN_SSH_KEY}}
           SSH_KEY_PATH: ${{ github.workspace }}/private.key
     - name: copy to remove host
-      run: scp -i private.key README.md -o "StrictHostKeyChecking no" ubuntu@3.231.65.121:/tmp/
+      run: echo "$SSH_PRIVATE_KEY" 
+     #scp -i private.key README.md -o "StrictHostKeyChecking no" ubuntu@3.231.65.121:/tmp/

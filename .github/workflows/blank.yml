@@ -34,11 +34,10 @@ jobs:
         
     - name: Create SSH key
       run: |
-          mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > private.key
           sudo chmod 600 private.key
       env:
           SSH_PRIVATE_KEY: ${{secrets.FEIREN_SSH_KEY}}
           SSH_KEY_PATH: ${{ github.workspace }}/private.key
     - name: copy to remove host
-      run: scp -o "StrictHostKeyChecking no" README.md ubuntu@3.231.65.121:/tmp/
+      run: scp -i private.key -o "StrictHostKeyChecking no" README.md ubuntu@3.231.65.121:/tmp/

@@ -9,7 +9,7 @@ jobs:
   pre_ci:
     name: Prepare CI environment
     # runs-on: ubuntu-latest
-    runs-on: [self-hosted, feiren]
+    runs-on: [self-hosted]
     steps:
       - name: Checkout Project
         uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
   able_job:
     name: Runtest Job
     # runs-on: ubuntu-latest
-    runs-on: [self-hosted, feiren]
+    runs-on: [self-hosted]
     if: "contains(needs.pre_ci.outputs.commit_message, 'runtest')"
     needs: pre_ci
     steps:

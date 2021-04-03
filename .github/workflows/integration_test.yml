@@ -27,10 +27,10 @@ jobs:
         if: github.event_name == 'pull_request'
         id: pr_get_commit_message
         run: |
-          cd ../../${{ github.event.repository.name }}/${{ github.event.repository.name }}
           echo ::set-output name=pr_commit_message::$(git log --format=%B -n 1 HEAD^2)
       # working-directory: ${{ github.event.repository.name }}
       # working-directory: ${GITHUB_REPOSITORY#*/}
+      # cd ../../${{ github.event.repository.name }}/${{ github.event.repository.name }}
 
       - name: debug Log commit message
         run: echo "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}"

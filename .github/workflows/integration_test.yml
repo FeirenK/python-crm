@@ -8,13 +8,14 @@ on:
 jobs:
   pre_ci:
     name: Prepare CI environment
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: [self-hosted, kuang]
     steps:
-      # - name: Checkout Project
-      #   uses: actions/checkout@v2
-      #   with:
-      #     # We need to fetch with a depth of 2 for pull_request so we can do HEAD^2
-      #     fetch-depth: 2
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          # We need to fetch with a depth of 2 for pull_request so we can do HEAD^2
+          fetch-depth: 2
 
       # - name: "[Push] Get commit message"
       #   if: github.event_name == 'push'
@@ -35,13 +36,13 @@ jobs:
 
   able_job:
     name: Runtest Job
-    runs-on: ubuntu-latest
-    # runs-on: [self-hosted, kuang]
+    # runs-on: ubuntu-latest
+    runs-on: [self-hosted, kuang]
     if: "contains(needs.pre_ci.outputs.commit_message, 'runtest')"
     needs: pre_ci
     steps:
-      - name: Checkout Project
-        uses: actions/checkout@v2
+      # - name: Checkout Project
+      #   uses: actions/checkout@v2
 
       - name: Log commit message
         run: echo "${{ needs.pre_ci.outputs.commit_message }}"

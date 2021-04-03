@@ -1,5 +1,5 @@
 ### 主要特性
-django  system manager
+django  system manageryy
 
 
 python webhook..... rt20:03

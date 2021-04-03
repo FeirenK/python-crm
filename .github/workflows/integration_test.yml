@@ -37,7 +37,7 @@ jobs:
     name: Runtest Job
     runs-on: ubuntu-latest
     # runs-on: [self-hosted, kuang]
-    if: "contains(needs.pre_ci.outputs.commit_message, '[runtest ]')"
+    if: "contains(needs.pre_ci.outputs.commit_message, 'runtest')"
     needs: pre_ci
     steps:
       - name: Checkout Project

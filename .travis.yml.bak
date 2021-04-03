@@ -1,6 +1,6 @@
 go_import_path: github.com/iotexproject/iotex-core
 os: 
-# - windows
+# - windows rrr
 - osx
 language: go
 env:

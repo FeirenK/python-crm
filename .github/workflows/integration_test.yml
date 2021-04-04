@@ -35,7 +35,7 @@ jobs:
     env:
       keyword: ${{ secrets.PR_CM_KEYWORD }}
 
-    if: "contains(needs.pre_ci.outputs.commit_message, ${keyword} )"
+    if: "contains(needs.pre_ci.outputs.commit_message, 'runtest' )"
     needs: pre_ci
     steps:
       # - name: Checkout Project

@@ -4,7 +4,7 @@ name: feiren test
 on:
   push:
     branches:
-      - master
+      - master1
     # tags:
     #   - v1
     # # 事件中要考虑的文件路径。 Optional; defaults to all.

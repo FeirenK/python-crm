@@ -35,7 +35,7 @@ jobs:
       - name: Echo the Keyword
         run: echo "${keyword}"
       - name: able test
-        if: "contains(${keyword}, 'runtestfeiren')"
+        if: "contains(${{ env.keyword }}, 'runtestfeiren')"
         run: echo "ok"
 
 

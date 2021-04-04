@@ -5,11 +5,11 @@ on:
   push:
     branches:
       - master
-    tags:
-      - v1
-    # 事件中要考虑的文件路径。 Optional; defaults to all.
-    paths:
-      - 'test/*'
+    # tags:
+    #   - v1
+    # # 事件中要考虑的文件路径。 Optional; defaults to all.
+    # paths:
+    #   - 'test/*'
 
 jobs:
   build:

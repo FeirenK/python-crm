@@ -32,7 +32,10 @@ jobs:
     name: Runtest Job
     # runs-on: ubuntu-latest
     runs-on: [self-hosted]
-    if: "contains(needs.pre_ci.outputs.commit_message, 'runtest' )"
+    env:
+      keyword: ${{ secrets.PR_CM_KEYWORD }}
+
+    if: "contains(needs.pre_ci.outputs.commit_message, ${{ env.keyword }} )"
     needs: pre_ci
     steps:
       # - name: Checkout Project

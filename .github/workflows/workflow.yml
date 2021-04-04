@@ -32,9 +32,7 @@ jobs:
           who-to-greet: 'Mona the Octocat'
         id: hello
       # 此步骤打印上一步操作的输出（时间）。
-      - name: Echo the greeting's time
-        run: echo 'The time was ${{ steps.hello.outputs.time }}.'
       - name: Echo the Keyword
-        run: echo "The secrts: keyword: ${keyword}"
+        run: echo "${keyword}"
 
 

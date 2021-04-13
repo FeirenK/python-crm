@@ -1,45 +1,69 @@
 name: Integration Workflow
 
 on:
-  pull_request:
+#   pull_request:
+  push:
     branches:
       - master
 
 jobs:
-  pre_ci:
-    name: Prepare CI environment
-    # runs-on: ubuntu-latest
-    runs-on: [self-hosted]
+  test_scp:
+  
     steps:
       - name: Checkout Project
         uses: actions/checkout@v2
+      - name: "ssh scp ssh pipelines"
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        env:
+          WELCOME: "ssh scp ssh pipelines"
+          LASTSSH: "Doing something after copying"
         with:
-          # We need to fetch with a depth of 2 for pull_request so we can do HEAD^2
-          fetch-depth: 2
+          host: ${{ secrets.SCOUT_HOST }}
+          user: ${{ secrets.SCOUT_USER }}
+          pass: ${{ secrets.SCOUT_KEY }}
+          port: ${{ secrets.SCOUT_PORT }}
+          connect_timeout: 10s
+          first_ssh: |
+            mkdir -p /data1/scout
+          scp: |
+            './README.md' => /data1/scout/
+          last_ssh: |
+            echo $LASTSSH && ls -lth /data1/scout/
+        
+#   pre_ci:
+#     name: Prepare CI environment
+#     runs-on: ubuntu-latest
+# #     runs-on: [self-hosted]
+#     steps:
+#       - name: Checkout Project
+#         uses: actions/checkout@v2
+#         with:
+#           # We need to fetch with a depth of 2 for pull_request so we can do HEAD^2
+#           fetch-depth: 2
 
-      - name: "[Pull Request] Get commit message"
-        if: github.event_name == 'pull_request'
-        id: pr_get_commit_message
-        run: |
-          echo ::set-output name=pr_commit_message::$(git log --format=%B -n 1 HEAD^2)
+#       - name: "[Pull Request] Get commit message"
+#         if: github.event_name == 'pull_request'
+#         id: pr_get_commit_message
+#         run: |
+#           echo ::set-output name=pr_commit_message::$(git log --format=%B -n 1 HEAD^2)
 
-      - name: debug Log commit message
-        run: echo "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}"
-    outputs:
-      commit_message: $( [ -z "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}" ] && echo "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}" )
+#       - name: debug Log commit message
+#         run: echo "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}"
+#     outputs:
+#       commit_message: $( [ -z "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}" ] && echo "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}" )
 
-  able_job:
-    name: Runtest Job
-    # runs-on: ubuntu-latest
-    runs-on: [self-hosted]
-    env:
-      keyword: ${{ secrets.PR_CM_KEYWORD }}
+#   able_job:
+#     name: Runtest Job
+#     # runs-on: ubuntu-latest
+#     runs-on: [self-hosted]
+#     env:
+#       keyword: ${{ secrets.PR_CM_KEYWORD }}
 
-    if: "contains(needs.pre_ci.outputs.commit_message, 'runtest' )"
-    needs: pre_ci
-    steps:
-      # - name: Checkout Project
-      #   uses: actions/checkout@v2
+#     if: "contains(needs.pre_ci.outputs.commit_message, 'runtest' )"
+#     needs: pre_ci
+#     steps:
+#       # - name: Checkout Project
+#       #   uses: actions/checkout@v2
 
-      - name: Log commit message
-        run: echo "${{ needs.pre_ci.outputs.commit_message }}"
+#       - name: Log commit message
+#         run: echo "${{ needs.pre_ci.outputs.commit_message }}"

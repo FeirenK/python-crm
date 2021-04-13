@@ -2,7 +2,7 @@
 django  system manager
 
 
-python webhook..... 
+python webhook...
 
 
 

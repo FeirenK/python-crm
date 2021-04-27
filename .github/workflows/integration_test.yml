@@ -9,7 +9,7 @@ on:
 jobs:
   test_scp:
 #     runs-on: ubuntu-latest
-    runs-on: [build]
+    runs-on: [self-hosted,build]
    
     steps:
       - name: Checkout Project
